@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Login;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Models\Register;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,7 +12,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('Dashboard.index');
 });
+// auth
 Route::get('/login', [LoginController::class, 'index']);
-Route::get('/register', function () {
-    return view('Register');
-});
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/login', [LoginController::class, 'auth']);
