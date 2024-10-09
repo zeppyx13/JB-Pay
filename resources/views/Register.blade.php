@@ -1,3 +1,21 @@
+@if ($errors->any())
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let errorMessage = `<ul>`;
+            @foreach ($errors->all() as $error)
+                errorMessage += `<li>{{ $error }}</li>`;
+            @endforeach
+            errorMessage += `</ul>`;
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Registration Failed',
+                html: errorMessage,
+                confirmButtonText: 'Try Again'
+            });
+        });
+    </script>
+@endif
 <!DOCTYPE html>
 
 <html lang="en">
@@ -23,6 +41,8 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="../css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
     <!-- Nepcha Analytics (nepcha.com) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 </head>
 
 <body class="">
@@ -50,27 +70,28 @@
                                     <p class="mb-0">Enter your email and password to register</p>
                                 </div>
                                 <div class="card-body">
-                                    <form role="form" method="POST" action="">
+                                    <form role="form" method="POST" action="/register">
+                                        @csrf
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Nama</label>
-                                            <input required autocomplete="off" name="nama" type="text"
+                                            <input required autocomplete="off" name="Name" type="text"
                                                 class="form-control">
                                         </div>
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Username</label>
-                                            <input required autocomplete="off" name="username" type="text"
+                                            <input required autocomplete="off" name="UserName" type="text"
                                                 class="form-control">
                                         </div>
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Email</label>
-                                            <input required autocomplete="off" name="email" type="email"
+                                            <input required autocomplete="off" name="Email" type="email"
                                                 class="form-control">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6 col-sm-5 col-12">
                                                 <div class="input-group input-group-outline mb-3">
                                                     <label class="form-label">Password</label>
-                                                    <input id="pw" required autocomplete="off" name="pw"
+                                                    <input id="pw" required autocomplete="off" name="password"
                                                         type="password" class="form-control">
                                                 </div>
                                             </div>

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Register;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreregisterRequest;
+use Illuminate\Validation\ValidationException;
+use Exception;
 
 class RegisterController extends Controller
 {
@@ -22,16 +25,7 @@ class RegisterController extends Controller
      */
     public function create(Request $request)
     {
-
-        $validatedData = $request->validate([
-            'name' => 'required|min:3|max:35',
-            'username' => 'required|min:5|max:15|unique:users',
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:8|max:255'
-        ]);
-        User::create($validatedData);
-        session()->flash('berhasil', 'Registration Successful');
-        return redirect('/Login');
+        // 
     }
 
     /**
@@ -39,8 +33,29 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'Name' => 'required|min:3|max:35',
+                'UserName' => 'required|min:5|max:15|unique:users',
+                'Email' => 'required|email:dns|unique:users',
+                'password' => 'required|min:8|max:255',
+                'pw2' => 'required|same:password',
+            ]);
+
+            // Hash password before storing
+            $validatedData['password'] = Hash::make($validatedData['password']);
+            unset($validatedData['pw2']);
+
+            // Create user
+            User::create($validatedData);
+
+            return redirect('/')->with('success', 'Registration Successful');
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
     }
+
+
 
     /**
      * Display the specified resource.

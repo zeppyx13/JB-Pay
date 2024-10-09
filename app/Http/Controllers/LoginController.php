@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function auth(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'Email' => ['required', 'email:dns'],
             'password' => ['required'],
         ]);
         if (Auth::attempt($credentials)) {
@@ -31,7 +31,7 @@ class LoginController extends Controller
                 return redirect()->intended('/dashboard');
             }
         }
-        $user = User::where('email', $credentials['email'])->first();
+        $user = User::where('Email', $credentials['Email'])->first();
         if (!$user) {
             // Jika tidak ada pengguna dengan email yang dimasukkan, kembalikan pesan kesalahan yang sesuai
             return back()->with('error', "Email doesn't exist.");
