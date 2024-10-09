@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../../img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../img/favicon.png">
+    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
     <title>
         JB Paylater
     </title>
@@ -33,8 +33,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
-                target="_blank">
+            <a class="navbar-brand m-0" target="_blank">
                 <img src="../../img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">JB Pay</span>
             </a>
@@ -48,6 +47,14 @@
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./leaderboard.php">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">leaderboard</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Leader Board</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -131,7 +138,7 @@
                             <img style="max-height:40px; border-radius:50%; margin-right:10px;" src="../../profile/"
                                 alt="profile">
                         </a>
-                        <span class="d-sm-inline d-none">zay</span>
+                        <span class="d-sm-inline d-none">Gung</span>
                     </li>
                 </ul>
             </div>
@@ -150,7 +157,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">total tempat</p>
-                                <h4 class="mb-0">12</h4>
+                                <h4 class="mb-0">15</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0 mt-5">
@@ -164,8 +171,8 @@
                                 <i class="material-icons opacity-10">payments</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">total kewajiban</p>
-                                <h4 class="mb-0">Rp. 1.B </h4>
+                                <p class="text-sm mb-0 text-capitalize">total belum dibayar</p>
+                                <h4 class="mb-0">Rp. 3.B </h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0 mt-5">
@@ -179,8 +186,8 @@
                                 <i class="material-icons opacity-10">account_balance</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">total pembayaran</p>
-                                <h4 class="mb-0">Rp. 400jt</h4>
+                                <p class="text-sm mb-0 text-capitalize">total dibayar</p>
+                                <h4 class="mb-0">Rp. 4.B</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0 mt-5">
@@ -195,7 +202,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">total pengeluaran</p>
-                                <h4 class="mb-0">Rp. 2.B
+                                <h4 class="mb-0">Rp. 7.B
                                 </h4>
                             </div>
                         </div>
@@ -241,38 +248,42 @@
                 </div>
             </div>
             <!-- user info -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card my-4">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="d-flex justify-content-start text-white text-capitalize ps-3">history
-                                    pinjaman</h6>
+            <div class="row mt-4">
+                <div class="col-lg-6 col-md-6 col-sm-6 mb-4 contact-fluid">
+                    <div class="card">
+                        <div class="row d-flex">
+                            <div class="col-12 d-flex justify-content-center mt-3">
+                                <img src="../../profile/" style="max-width: 75px; max-height:75px;" alt="profile">
                             </div>
-                        </div>
-                        <div class="card-body px-0 pb-2">
-                            <div id="container" class=" table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center text-black font-weight-bolder">No</th>
-                                            <th class="text-center text-uppercase text-black font-weight-bolder">
-                                                Kewajiban</th>
-                                            <th class="text-center text-uppercase text-black font-weight-bolder">
-                                                Pembayaran</th>
-                                            <th class="text-center text-uppercase text-black font-weight-bolder">Tempat
-                                            </th>
-                                            <th class="text-center text-uppercase text-black font-weight-bolder">
-                                                Tanggal</th>
-                                            <th class="text-center text-uppercase text-black font-weight-bolder">
-                                                Keterangan</th>
-                                            <th class="text-center text-uppercase text-black font-weight-bolder">Bukti
-                                            </th>
-                                        </tr>
-                                    </thead>
+                            <div class="col-12 m-3">
+                                <table>
+                                    <tr>
+                                        <td><strong>User Name</strong></td>
+                                        <td><strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</strong></td>
+                                        <td>Vitoruz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Email</strong></td>
+                                        <td><strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</strong></td>
+                                        <br>
+                                        <td>Vitoruz12</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Paylater</strong></td>
+                                        <td><strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</strong></td>
+                                        <br>
+                                        <td>Rp. 100.000.000</td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
+                        <hr class="dark horizontal my-0">
+                        <footer style="text-decoration: none;">
+                            <div style="margin-right:15px; margin-top:10px; margin-bottom:10px;"
+                                class="d-flex justify-content-end"><a
+                                    href="../../pages/detail.user.php?id=1">Detail</a>
+                            </div>
+                        </footer>
                     </div>
                 </div>
                 <!--  -->

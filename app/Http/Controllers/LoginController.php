@@ -3,43 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\signin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Exception;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('Login');
     }
     public function auth(Request $request)
     {
-        $credentials = $request->validate([
-            'Email' => ['required', 'email:dns'],
-            'password' => ['required'],
-        ]);
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            $user = Auth::user();
-            if ($user->Role == 'Admin') {
-                return redirect()->intended('/Admin');
-            } else {
-                return redirect()->intended('/dashboard');
+        try {
+            // Validasi input dari form login
+            $credentials = $request->validate([
+                'Email' => ['required', 'email:dns'],
+                'password' => ['required'],
+            ]);
+
+            // Cek apakah percobaan login berhasil
+            if (Auth::attempt($credentials)) {
+                // Regenerasi session setelah login
+                $request->session()->regenerate();
+
+                // Dapatkan informasi user yang sedang login
+                $user = Auth::user();
+
+                // Jika user adalah admin, arahkan ke halaman admin
+                if ($user->Role == 'Admin') {
+                    return redirect()->intended('/Admin');
+                } else {
+                    // Jika user bukan admin, arahkan ke halaman dashboard
+                    return redirect()->intended('/dashboard');
+                }
             }
-        }
-        $user = User::where('Email', $credentials['Email'])->first();
-        if (!$user) {
-            // Jika tidak ada pengguna dengan email yang dimasukkan, kembalikan pesan kesalahan yang sesuai
-            return back()->with('error', "Email doesn't exist.");
-        } else {
-            // Jika email terdaftar tetapi kata sandi salah, kembalikan pesan kesalahan yang sesuai
-            return back()->with('error', 'Password wrong.');
+
+            // Jika login gagal (email atau password salah)
+            throw new Exception("Login error: please check your email or password.");
+        } catch (Exception $e) {
+            // Kembalikan ke halaman sebelumnya dengan pesan error generik
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -59,7 +67,7 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(signin $signin)
+    public function show(Request $request)
     {
         //
     }
@@ -67,7 +75,7 @@ class LoginController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(signin $signin)
+    public function edit(Request $request)
     {
         //
     }
@@ -75,7 +83,7 @@ class LoginController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, signin $signin)
+    public function update(Request $request)
     {
         //
     }
