@@ -33,7 +33,7 @@ class LoginController extends Controller
 
                 // Jika user adalah admin, arahkan ke halaman admin
                 if ($user->Role == 'Admin') {
-                    return redirect()->intended('/Admin');
+                    return redirect()->intended('/admin');
                 } else {
                     // Jika user bukan admin, arahkan ke halaman dashboard
                     return redirect()->intended('/dashboard');
